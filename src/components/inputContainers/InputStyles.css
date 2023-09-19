@@ -1,0 +1,12 @@
+.input-container {
+  margin: 10px 0;
+  font-size: 20px;
+}
+
+.currency {
+  border-radius: 5px;
+  border: 1px solid;
+  font-family: "Playfair Display";
+  padding: 10px;
+  font-size: 20px;
+}
