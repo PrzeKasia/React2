@@ -1,4 +1,3 @@
-import React from "react";
 import "./InputStyles.css";
 
 function CurrencySelect({ currencyCode, onCurrencyChange }) {
@@ -7,7 +6,6 @@ function CurrencySelect({ currencyCode, onCurrencyChange }) {
       <label htmlFor="currency">Wybierz walutę: </label>
       <select
         className="currency"
-        id="currency"
         value={currencyCode}
         onChange={onCurrencyChange}
       >

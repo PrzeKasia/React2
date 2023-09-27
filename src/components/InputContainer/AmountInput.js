@@ -1,4 +1,3 @@
-import React from "react";
 import "./InputStyles.css";
 
 function AmountInput({ amount, onAmountChange, pressEnter }) {
@@ -8,7 +7,6 @@ function AmountInput({ amount, onAmountChange, pressEnter }) {
       <input
         className="currency"
         type="number"
-        id="amount"
         step="0.01"
         value={amount}
         onChange={onAmountChange}

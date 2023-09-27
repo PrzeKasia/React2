@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import CurrencySelect from "./components/inputContainers/CurrencySelect";
-import AmountInput from "./components/inputContainers/AmountInput";
-import ResultDisplay from "./components/Result/ResultDisplay";
+import CurrencySelect from "./components/InputContainer/CurrencySelect";
+import AmountInput from "./components/InputContainer/AmountInput";
+import Result from "./components/Result/Result";
 import Button from "./components/Button/Button";
 import "./App.css";
 
 function App() {
   const [currencyCode, setCurrencyCode] = useState("EUR");
-  const [amount, setAmount] = useState();
+  const [amount, setAmount] = useState("");
   const [result, setResult] = useState("");
 
   const handleCurrencyChange = (event) => {
@@ -17,12 +17,10 @@ function App() {
   const handleAmountChange = (event) => {
     setAmount(event.target.value);
   };
-  const handleKeyUp = (event) => {
-    if (event.key === "Enter") {
-      handleConvert();
-    }
-  };
-  const handleConvert = async () => {
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
     try {
       const response = await fetch(
         `https://api.nbp.pl/api/exchangerates/rates/a/${currencyCode}/?format=json`
@@ -56,17 +54,15 @@ function App() {
   return (
     <div className="container">
       <h1>Przelicznik Walut</h1>
-      <CurrencySelect
-        currencyCode={currencyCode}
-        onCurrencyChange={handleCurrencyChange}
-      />
-      <AmountInput
-        amount={amount}
-        onAmountChange={handleAmountChange}
-        pressEnter={handleKeyUp}
-      />
-      <Button handleClick={handleConvert} />
-      <ResultDisplay result={result} />
+      <form onSubmit={handleSubmit}>
+        <CurrencySelect
+          currencyCode={currencyCode}
+          onCurrencyChange={handleCurrencyChange}
+        />
+        <AmountInput amount={amount} onAmountChange={handleAmountChange} />
+        <Button type="submit">Przelicz</Button>
+      </form>
+      <Result result={result} />
     </div>
   );
 }
