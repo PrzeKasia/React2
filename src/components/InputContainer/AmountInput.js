@@ -8,9 +8,9 @@ function AmountInput({ amount, onAmountChange, pressEnter }) {
         className="currency"
         type="number"
         step="0.01"
-        value={amount}
-        onChange={onAmountChange}
-        onKeyUp={pressEnter}
+        required
+        min="0.01"
+        name="amount"
       />
     </div>
   );

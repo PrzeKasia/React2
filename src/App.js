@@ -6,20 +6,13 @@ import Button from "./components/Button/Button";
 import "./App.css";
 
 function App() {
-  const [currencyCode, setCurrencyCode] = useState("EUR");
-  const [amount, setAmount] = useState("");
   const [result, setResult] = useState("");
-
-  const handleCurrencyChange = (event) => {
-    setCurrencyCode(event.target.value);
-  };
-
-  const handleAmountChange = (event) => {
-    setAmount(event.target.value);
-  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    const currencyCode = event.target.currency.value;
+    const amount = event.target.amount.value;
 
     try {
       const response = await fetch(
@@ -55,11 +48,8 @@ function App() {
     <div className="container">
       <h1>Przelicznik Walut</h1>
       <form onSubmit={handleSubmit}>
-        <CurrencySelect
-          currencyCode={currencyCode}
-          onCurrencyChange={handleCurrencyChange}
-        />
-        <AmountInput amount={amount} onAmountChange={handleAmountChange} />
+        <CurrencySelect />
+        <AmountInput />
         <Button type="submit">Przelicz</Button>
       </form>
       <Result result={result} />

@@ -4,11 +4,7 @@ function CurrencySelect({ currencyCode, onCurrencyChange }) {
   return (
     <div className="input-container">
       <label htmlFor="currency">Wybierz walutę: </label>
-      <select
-        className="currency"
-        value={currencyCode}
-        onChange={onCurrencyChange}
-      >
+      <select className="currency" name="currency">
         <option value="EUR">Euro (EUR)</option>
         <option value="USD">Dolary amerykańskie (USD)</option>
         <option value="CHF">Franki szwajcarskie (CHF)</option>
